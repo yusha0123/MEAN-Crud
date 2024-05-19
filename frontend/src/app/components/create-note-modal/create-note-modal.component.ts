@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotesService } from 'src/app/services/notes.service';
-import { Input, Note } from 'src/app/interfaces/note';
+import { Input } from 'src/app/interfaces/note';
 
 @Component({
   selector: 'app-create-note-modal',

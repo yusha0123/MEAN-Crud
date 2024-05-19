@@ -9,16 +9,26 @@ import { NotesService } from 'src/app/services/notes.service';
 })
 export class NotesListComponent implements OnInit {
   notes: Note[] = [];
+  loading: boolean = false;
 
-  constructor(private noteService: NotesService) {}
+  constructor(private notesService: NotesService) {}
 
   ngOnInit() {
-    this.noteService.getNotes().subscribe({
-      next: (posts: Note[]) => {
-        this.notes = posts;
+    this.loadNotes();
+    this.notesService.refreshNotes$.subscribe(() => {
+      this.loadNotes();
+    });
+  }
+
+  loadNotes() {
+    this.loading = true;
+    this.notesService.getNotes().subscribe({
+      next: (notes: Note[]) => {
+        this.notes = notes;
+        this.loading = false;
       },
       error: (error) => {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching notes:', error);
       },
     });
   }

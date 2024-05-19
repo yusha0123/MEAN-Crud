@@ -6,7 +6,7 @@ export const createNote = async (req: Request, res: Response) => {
     const { title, description } = req.body;
 
     if (!title || !description) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "All the fields are required!",
       });
@@ -16,7 +16,7 @@ export const createNote = async (req: Request, res: Response) => {
       title,
       description,
     });
-    res.json(201).json(note);
+    return res.status(201).json(note);
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -62,7 +62,7 @@ export const updateNote = async (req: Request, res: Response) => {
       });
     }
 
-    res.json({
+    return res.json({
       success: true,
       message: "Note updated successfully!",
       note,
@@ -95,7 +95,7 @@ export const deleteNote = async (req: Request, res: Response) => {
       });
     }
 
-    res.json({
+    return res.json({
       success: true,
       message: "Note deleted successfully!",
     });
