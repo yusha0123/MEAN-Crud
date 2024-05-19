@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NotesListComponent } from './components/notes-list/notes-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     IconComponent,
     CreateNoteModalComponent,
     HeaderComponent,
+    NotesListComponent,
   ],
   imports: [
     BrowserModule,

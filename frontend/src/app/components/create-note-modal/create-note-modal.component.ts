@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotesService } from 'src/app/services/notes.service';
+import { Input, Note } from 'src/app/interfaces/note';
 
 @Component({
   selector: 'app-create-note-modal',
@@ -11,13 +13,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateNoteModalComponent implements OnInit, OnDestroy {
   visible: boolean = false;
+  loading: boolean = false;
   subscription: Subscription | undefined;
   noteForm: FormGroup;
 
   constructor(
     private messageService: MessageService,
     private modalService: ModalService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private notesService: NotesService
   ) {
     this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -41,7 +45,29 @@ export class CreateNoteModalComponent implements OnInit, OnDestroy {
 
   submitForm = () => {
     if (this.noteForm.valid) {
-      console.log(this.noteForm.value);
+      this.loading = true;
+      const newNote = this.noteForm.value as Input;
+      this.notesService.createNote(newNote).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Note created successfully!',
+          });
+          this.noteForm.reset();
+          this.modalService.hideModal();
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to create note!',
+          });
+        },
+        complete: () => {
+          this.loading = false;
+        },
+      });
     }
   };
 }

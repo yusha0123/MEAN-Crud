@@ -31,7 +31,7 @@
       <p-button
         label="Create"
         type="submit"
-        [disabled]="!noteForm.valid"
+        [disabled]="!noteForm.valid || loading"
         class="mt-1 mx-auto block"
         styleClass="p-button-success"
       />
