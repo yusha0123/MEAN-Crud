@@ -85,6 +85,10 @@ export class EditNoteModalComponent {
       message: 'Do you want to delete this Note?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
+      rejectButtonStyleClass: 'p-button-text',
+      acceptButtonStyleClass: 'p-button-text p-button-danger',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
       accept: () => {
         this.notesService.deleteNote(this.currentNote?._id!).subscribe({
           next: () => {
@@ -106,6 +110,9 @@ export class EditNoteModalComponent {
             this.modalService.hideEditModal();
           },
         });
+      },
+      reject: () => {
+        this.loading = false;
       },
     });
   }

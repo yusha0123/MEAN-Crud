@@ -11,11 +11,21 @@
         <h2 class="font-bold text-2xl truncate">
           {{ note.title }}
         </h2>
-        <p class="text-xl">
-          {{ note.description }}
-        </p>
+        <div class="flex-1 overflow-hidden">
+          <p class="text-xl">
+            {{ note.description }}
+          </p>
+        </div>
       </div>
     </ng-container>
+    <div
+      class="fixed inset-0 flex items-center justify-center"
+      *ngIf="!loading && notes.length === 0"
+    >
+      <p class="font-semibold text-gray-600 text-xl">
+        <i class="pi pi-book mr-1"></i>Notes you add appear here
+      </p>
+    </div>
     <ng-template #loadingSkeleton>
       <p-skeleton
         *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8]"
