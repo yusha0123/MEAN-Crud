@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { SkeletonModule } from 'primeng/skeleton';
+import { EditNoteModalComponent } from './components/edit-note-modal/edit-note-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     CreateNoteModalComponent,
     HeaderComponent,
     NotesListComponent,
+    EditNoteModalComponent,
   ],
   imports: [
     BrowserModule,

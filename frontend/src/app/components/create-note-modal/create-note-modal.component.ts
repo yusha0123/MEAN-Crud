@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotesService } from 'src/app/services/notes.service';
-import { Input } from 'src/app/interfaces/note';
+import { Input } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-create-note-modal',
@@ -30,7 +30,7 @@ export class CreateNoteModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.modalService.modalVisibility$.subscribe(
+    this.subscription = this.modalService.createModalVisibility$.subscribe(
       (visibility) => {
         this.visible = visibility;
       }
@@ -55,7 +55,7 @@ export class CreateNoteModalComponent implements OnInit, OnDestroy {
             detail: 'Note created successfully!',
           });
           this.noteForm.reset();
-          this.modalService.hideModal();
+          this.modalService.hideCreateModal();
         },
         error: () => {
           this.messageService.add({

@@ -1,0 +1,39 @@
+<p-dialog
+  header="Edit Note"
+  [(visible)]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="max-w-md w-[95vw] md:w-full"
+>
+  <div class="pt-3">
+    <form
+      class="flex flex-col w-full gap-y-3"
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <input
+        type="text"
+        pInputText
+        class="w-full"
+        placeholder="Enter title"
+        formControlName="title"
+        required
+      />
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        placeholder="Enter description"
+        formControlName="description"
+        required
+      ></textarea>
+      <p-button
+        label="Create"
+        type="submit"
+        class="mt-1 mx-auto block"
+        styleClass="p-button-success"
+      />
+    </form>
+  </div>
+</p-dialog>

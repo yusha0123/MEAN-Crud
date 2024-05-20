@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from 'src/app/interfaces/note';
+import { Note } from 'src/app/interfaces';
+import { ModalService } from 'src/app/services/modal.service';
 import { NotesService } from 'src/app/services/notes.service';
 
 @Component({
@@ -11,7 +12,10 @@ export class NotesListComponent implements OnInit {
   notes: Note[] = [];
   loading: boolean = false;
 
-  constructor(private notesService: NotesService) {}
+  constructor(
+    private notesService: NotesService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit() {
     this.loadNotes();
@@ -31,5 +35,9 @@ export class NotesListComponent implements OnInit {
         console.error('Error fetching notes:', error);
       },
     });
+  }
+
+  editNote(note: Note) {
+    this.modalService.showEditModal(note);
   }
 }

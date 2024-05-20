@@ -10,6 +10,6 @@ export class HeaderComponent {
   constructor(private modalService: ModalService) {}
 
   openCreateNoteModal() {
-    this.modalService.showModal();
+    this.modalService.showCreateModal();
   }
 }
