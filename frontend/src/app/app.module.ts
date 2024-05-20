@@ -11,13 +11,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { SkeletonModule } from 'primeng/skeleton';
 import { EditNoteModalComponent } from './components/edit-note-modal/edit-note-modal.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { EditNoteModalComponent } from './components/edit-note-modal/edit-note-m
     ToastModule,
     CardModule,
     SkeletonModule,
+    ConfirmDialogModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

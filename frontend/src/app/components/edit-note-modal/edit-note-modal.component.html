@@ -28,12 +28,21 @@
         formControlName="description"
         required
       ></textarea>
-      <p-button
-        label="Create"
-        type="submit"
-        class="mt-1 mx-auto block"
-        styleClass="p-button-success"
-      />
+      <div class="flex justify-center gap-x-3 mt-1">
+        <p-button
+          label="Update"
+          type="submit"
+          [disabled]="loading"
+          styleClass="p-button-success p-button-sm p-button-help"
+        />
+        <p-button
+          label="Delete"
+          type="button"
+          [disabled]="loading"
+          (onClick)="onDelete()"
+          styleClass="p-button-danger p-button-sm p-button-help"
+        />
+      </div>
     </form>
   </div>
 </p-dialog>
